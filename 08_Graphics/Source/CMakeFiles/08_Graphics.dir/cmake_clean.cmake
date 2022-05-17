@@ -1,0 +1,41 @@
+file(REMOVE_RECURSE
+  "08_Graphics"
+  "08_Graphics.pdb"
+  "CMakeFiles/08_Graphics.dir/Aircraft.cpp.o"
+  "CMakeFiles/08_Graphics.dir/Animation.cpp.o"
+  "CMakeFiles/08_Graphics.dir/Application.cpp.o"
+  "CMakeFiles/08_Graphics.dir/BloomEffect.cpp.o"
+  "CMakeFiles/08_Graphics.dir/Button.cpp.o"
+  "CMakeFiles/08_Graphics.dir/Command.cpp.o"
+  "CMakeFiles/08_Graphics.dir/CommandQueue.cpp.o"
+  "CMakeFiles/08_Graphics.dir/Component.cpp.o"
+  "CMakeFiles/08_Graphics.dir/Container.cpp.o"
+  "CMakeFiles/08_Graphics.dir/DataTables.cpp.o"
+  "CMakeFiles/08_Graphics.dir/EmitterNode.cpp.o"
+  "CMakeFiles/08_Graphics.dir/Entity.cpp.o"
+  "CMakeFiles/08_Graphics.dir/GameOverState.cpp.o"
+  "CMakeFiles/08_Graphics.dir/GameState.cpp.o"
+  "CMakeFiles/08_Graphics.dir/Label.cpp.o"
+  "CMakeFiles/08_Graphics.dir/Main.cpp.o"
+  "CMakeFiles/08_Graphics.dir/MenuState.cpp.o"
+  "CMakeFiles/08_Graphics.dir/ParticleNode.cpp.o"
+  "CMakeFiles/08_Graphics.dir/PauseState.cpp.o"
+  "CMakeFiles/08_Graphics.dir/Pickup.cpp.o"
+  "CMakeFiles/08_Graphics.dir/Player.cpp.o"
+  "CMakeFiles/08_Graphics.dir/PostEffect.cpp.o"
+  "CMakeFiles/08_Graphics.dir/Projectile.cpp.o"
+  "CMakeFiles/08_Graphics.dir/SceneNode.cpp.o"
+  "CMakeFiles/08_Graphics.dir/SettingsState.cpp.o"
+  "CMakeFiles/08_Graphics.dir/SpriteNode.cpp.o"
+  "CMakeFiles/08_Graphics.dir/State.cpp.o"
+  "CMakeFiles/08_Graphics.dir/StateStack.cpp.o"
+  "CMakeFiles/08_Graphics.dir/TextNode.cpp.o"
+  "CMakeFiles/08_Graphics.dir/TitleState.cpp.o"
+  "CMakeFiles/08_Graphics.dir/Utility.cpp.o"
+  "CMakeFiles/08_Graphics.dir/World.cpp.o"
+)
+
+# Per-language clean rules from dependency scanning.
+foreach(lang CXX)
+  include(CMakeFiles/08_Graphics.dir/cmake_clean_${lang}.cmake OPTIONAL)
+endforeach()
