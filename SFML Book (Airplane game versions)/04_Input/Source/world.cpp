@@ -1,7 +1,7 @@
-#include <Book/World.hpp>
+#include "World.hpp"
 
 #include <SFML/Graphics/RenderWindow.hpp>
-#include <Book/StringHelpers.hpp>
+#include "StringHelpers.hpp"
 
 #include <algorithm>
 #include <cmath>
@@ -39,7 +39,6 @@ void World::update(sf::Time dt)
 	// Scroll the world, reset player velocity
 	mWorldView.move(0.f, mScrollSpeed * dt.asSeconds());	
 	mPlayerAircraft->setVelocity(0.f, 0.f);
-	mPlayerAircraft->setRotation(0.f);
 
 	// Forward commands to scene graph, adapt velocity (scrolling, diagonal correction)
 	while (!mCommandQueue.isEmpty())
@@ -99,16 +98,6 @@ void World::buildScene()
 	mPlayerAircraft = leader.get();
 	mPlayerAircraft->setPosition(mSpawnPosition);
 	mSceneLayers[Air]->attachChild(std::move(leader));
-
-	// Left Escort
-	std::unique_ptr<Aircraft> leftEscort(new Aircraft(Aircraft::Raptor, mTextures));
-	leftEscort->setPosition(-80.f, 50.f);
-	mPlayerAircraft->attachChild(std::move(leftEscort));
-
-	// Left Escort
-	std::unique_ptr<Aircraft> rightEscort(new Aircraft(Aircraft::Raptor, mTextures));
-	rightEscort->setPosition(80.f, 50.f);
-	mPlayerAircraft->attachChild(std::move(rightEscort));
 
 	// Asteroid
 	std::unique_ptr<Aircraft> asteroid(new Aircraft(Aircraft::Asteroid, mTextures));

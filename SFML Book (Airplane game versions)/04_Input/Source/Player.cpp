@@ -1,7 +1,7 @@
-#include <Book/Player.hpp>
-#include <Book/CommandQueue.hpp>
-#include <Book/Aircraft.hpp>
-#include <Book/Foreach.hpp>
+#include "Player.hpp"
+#include "CommandQueue.hpp"
+#include "Aircraft.hpp"
+#include "Foreach.hpp"
 
 #include <map>
 #include <string>
@@ -19,7 +19,7 @@ struct AircraftMover
 	void operator() (Aircraft& aircraft, sf::Time) const
 	{
 		aircraft.accelerate(velocity);
-		aircraft.rotate(rotation);
+		//aircraft.rotate(rotation);
 	}
 
 	sf::Vector2f velocity;
@@ -29,8 +29,8 @@ struct AircraftMover
 Player::Player()
 {
 	// Set initial key bindings
-	mKeyBinding[sf::Keyboard::Left] = RotateLeft;
-	mKeyBinding[sf::Keyboard::Right] = RotateRight;
+	mKeyBinding[sf::Keyboard::Left] = MoveLeft;
+	mKeyBinding[sf::Keyboard::Right] = MoveRight;
 	mKeyBinding[sf::Keyboard::Up] = MoveUp;
 	mKeyBinding[sf::Keyboard::Down] = MoveDown;
 
@@ -94,8 +94,8 @@ void Player::initializeActions()
 {
 	const float playerSpeed = 200.f;
 	const float rotation = 10.f;
-	mActionBinding[RotateLeft].action	 = derivedAction<Aircraft>(AircraftMover(0.f, 0.f, -rotation));
-	mActionBinding[RotateRight].action = derivedAction<Aircraft>(AircraftMover(0.f, 0.f, +rotation));
+	mActionBinding[MoveLeft].action	 = derivedAction<Aircraft>(AircraftMover(-playerSpeed, 0.f, 0.f));
+	mActionBinding[MoveRight].action = derivedAction<Aircraft>(AircraftMover(+playerSpeed, 0.f, 0.f));
 	mActionBinding[MoveUp].action    = derivedAction<Aircraft>(AircraftMover(0.f, -playerSpeed, 0.f));
 	mActionBinding[MoveDown].action  = derivedAction<Aircraft>(AircraftMover(0.f, +playerSpeed, 0.f));
 }
@@ -104,8 +104,8 @@ bool Player::isRealtimeAction(Action action)
 {
 	switch (action)
 	{
-		case RotateLeft:
-		case RotateRight:
+		case MoveLeft:
+		case MoveRight:
 		case MoveDown:
 		case MoveUp:
 			return true;

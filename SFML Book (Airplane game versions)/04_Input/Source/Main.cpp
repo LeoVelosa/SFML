@@ -1,4 +1,4 @@
-#include <Book/Game.hpp>
+#include "Game.cpp"
 
 #include <stdexcept>
 #include <iostream>

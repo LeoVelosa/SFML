@@ -1,6 +1,16 @@
-#include <Book/Game.hpp>
-#include <Book/StringHelpers.hpp>
+#include "Game.hpp"
+#include "Aircraft.cpp"
+#include "Command.cpp"
+#include "CommandQueue.cpp"
+#include "World.cpp"
+#include "SceneNode.cpp"
+#include "Player.cpp"
+#include "SpriteNode.cpp"
+#include "Entity.cpp"
 
+#include "StringHelpers.hpp"
+
+#include <iostream>
 
 const sf::Time Game::TimePerFrame = sf::seconds(1.f/60.f);
 
@@ -24,6 +34,19 @@ Game::Game()
 	mScoreText.setPosition(5.f, 30.f);
 	mScoreText.setCharacterSize(15);
 	mScoreText.setString("0");
+}
+
+int main()
+{
+	try
+	{
+		Game game;
+		game.run();
+	}
+	catch (std::exception& e)
+	{
+		std::cout << "\nEXCEPTION: " << e.what() << std::endl;
+	}
 }
 
 void Game::run()
