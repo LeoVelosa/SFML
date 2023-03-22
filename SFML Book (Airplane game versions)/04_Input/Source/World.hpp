@@ -30,7 +30,7 @@ class World : private sf::NonCopyable
 		explicit							World(sf::RenderWindow& window);
 		void								update(sf::Time dt);
 		void								draw();
-		int 								getScore();
+		int 								getHealth();
 		
 		CommandQueue&						getCommandQueue();
 
@@ -40,7 +40,7 @@ class World : private sf::NonCopyable
 		void								buildScene();
 		void								adaptPlayerPosition();
 		void								adaptPlayerVelocity();
-		void 								updateScore();
+		void 								updateHealth();
 		void								spawnAsteroids(sf::Time dt, sf::Clock clock);
 		float								random(float min, float max);
 
@@ -68,8 +68,8 @@ class World : private sf::NonCopyable
 		float								mScrollSpeed;
 		Aircraft*							mPlayerAircraft;
 		Aircraft*							mAsteroid;
-		sf::Text 							mScoreText;
-		int 								mScore;
+		sf::Text 							mHealthText;
+		int 								mHealth;
 		sf::Font 							mFont;
 		sf::Time							mAsteroidTime;
 		sf::Clock							mClock;

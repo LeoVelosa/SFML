@@ -22,7 +22,7 @@ Game::Game()
 , mStatisticsText()
 , mStatisticsUpdateTime()
 , mStatisticsNumFrames(0)
-, mScoreText()
+, mHealthText()
 {
 	mWindow.setKeyRepeatEnabled(false);
 
@@ -30,10 +30,10 @@ Game::Game()
 	mStatisticsText.setFont(mFont);
 	mStatisticsText.setPosition(5.f, 5.f);
 	mStatisticsText.setCharacterSize(10);
-	mScoreText.setFont(mFont);
-	mScoreText.setPosition(5.f, 30.f);
-	mScoreText.setCharacterSize(15);
-	mScoreText.setString("0");
+	mHealthText.setFont(mFont);
+	mHealthText.setPosition(5.f, 30.f);
+	mHealthText.setCharacterSize(15);
+	mHealthText.setString("0");
 }
 
 int main()
@@ -66,7 +66,7 @@ void Game::run()
 		}
 
 		updateStatistics(elapsedTime);
-		updateScore();
+		updateHealth();
 		render();
 	}
 }
@@ -99,7 +99,7 @@ void Game::render()
 
 	mWindow.setView(mWindow.getDefaultView());
 	mWindow.draw(mStatisticsText);
-	mWindow.draw(mScoreText);
+	mWindow.draw(mHealthText);
 	mWindow.display();
 }
 
@@ -119,7 +119,7 @@ void Game::updateStatistics(sf::Time elapsedTime)
 	}
 }
 
-void Game::updateScore()
+void Game::updateHealth()
 {
-	mScoreText.setString("Score: " + toString(mWorld.getScore()));
+	mHealthText.setString("Health: " + toString(mWorld.getHealth()));
 }

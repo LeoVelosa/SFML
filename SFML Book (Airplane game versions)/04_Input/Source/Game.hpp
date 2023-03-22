@@ -19,7 +19,7 @@ class Game : private sf::NonCopyable
 		void					update(sf::Time elapsedTime);
 		void					render();
 		void					updateStatistics(sf::Time elapsedTime);
-		void 					updateScore();
+		void 					updateHealth();
 
 
 	private:
@@ -33,6 +33,6 @@ class Game : private sf::NonCopyable
 		sf::Text				mStatisticsText;
 		sf::Time				mStatisticsUpdateTime;
 		std::size_t				mStatisticsNumFrames;
-		sf::Text 				mScoreText;
-		int 					mScore;
+		sf::Text 				mHealthText;
+		int 					mHealth;
 };

@@ -20,14 +20,14 @@ World::World(sf::RenderWindow& window)
 , mScrollSpeed(-50.f)
 , mPlayerAircraft(nullptr)
 , mAsteroid(nullptr)
-, mScore()
+, mHealth()
 , mAsteroidTime()
 , mTracker()
 {
 	loadTextures();
 	buildScene();
 	sf::Time elapsedTime = sf::Time::Zero;
-	mScore = 10;
+	mHealth = 10;
 	mAsteroidTime = sf::Time::Zero;
 	// Prepare the view
 	mWorldView.setCenter(mSpawnPosition);
@@ -47,7 +47,7 @@ void World::update(sf::Time dt)
 
 	// Regular update step, adapt position (correct if outside view)
 	mSceneGraph.update(dt);
-	updateScore();
+	updateHealth();
 	spawnAsteroids(dt, clock);
 	adaptPlayerPosition();
 }
@@ -133,32 +133,37 @@ void World::adaptPlayerVelocity()
 	mPlayerAircraft->accelerate(0.f, mScrollSpeed);
 }
 
-void World::updateScore()
+void World::updateHealth()
 {
 	sf::FloatRect viewBounds(mWorldView.getCenter() - mWorldView.getSize() / 2.f, mWorldView.getSize());
 	if(mPlayerAircraft->getBounds().intersects(mAsteroid->getBounds()))
 	{
-		mAsteroid->setPosition(mWorldView.getCenter().x + random(-500.f, 500.f), viewBounds.top);
+		mAsteroid->setPosition(mWorldView.getCenter().x + random(-100.f, 100.f), viewBounds.top);
 		mAsteroid->setVelocity(random(-50.f, 50.f), 50.f);
-		mScore -= 1;
+		mHealth -= 1;
+		mAsteroidTime = sf::Time::Zero;
 	}
 }
 
-int World::getScore()
+int World::getHealth()
 {
-	return mScore;
+	return mHealth;
 }
 
 void World::spawnAsteroids(sf::Time elapsedTime, sf::Clock clock)
 {
+	sf::FloatRect viewBounds(mWorldView.getCenter() - mWorldView.getSize() / 2.f, mWorldView.getSize());
 	mAsteroidTime += elapsedTime;
-	if(mAsteroidTime > sf::seconds(2.0f)) {
+	if(mAsteroidTime > sf::seconds(5.0f)) {
 		mTracker += 500;
 		//std::unique_ptr<Aircraft> asteroid(new Aircraft(Aircraft::Asteroid, mTextures));
 		//mAsteroid = asteroid.get();
 		//mAsteroid->setPosition(320,1500);
 		//mAsteroid->setVelocity(50.f,50.f);
 		//mSceneLayers[Air]->attachChild(std::move(asteroid));
+		mAsteroid->setPosition(mWorldView.getCenter().x + random(-100.f, 100.f), viewBounds.top);
+		mAsteroid->setVelocity(random(-50.f, 50.f), 50.f);
+
 		mAsteroidTime = sf::Time::Zero;
 	}
 }
